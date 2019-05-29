@@ -1,4 +1,3 @@
-//import Start from '@/components/pages/StartPage'
 import Posts from '@/components/PostsPage'
 import NewPost from '@/components/NewPostPage'
 import EditPost from '@/components/EditPostPage'

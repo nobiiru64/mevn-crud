@@ -49,7 +49,7 @@ router.put('/posts/:id', (req, res) => {
             })
         }
     })
-})
+});
 
 router.get('/posts/:id', (req, res) => {
     Post.findById(req.params.id, 'title description', (err, post) => {
@@ -59,7 +59,17 @@ router.get('/posts/:id', (req, res) => {
             res.send(post)
         }
     })
-})
+});
 
-module.exports = router
+router.delete('/posts/:id', (req, res) => {
+    Post.remove({ _id: req.params.id }, err => {
+        if (err) {
+            res.sendStatus(500)
+        } else {
+            res.sendStatus(200)
+        }
+    })
+});
+
+module.exports = router;
 

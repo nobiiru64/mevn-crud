@@ -21,6 +21,10 @@
           <tr v-for="(post, index) in this.posts" :key="post.title">
             <td>{{ post.title }}</td>
             <td>{{ post.description }}</td>
+            <td>
+              <router-link :to="{ name: 'EditPost', params: {id: post._id} }"> edit </router-link>
+              <button class="btn btn-danger btn-sm" type="button" @click="removePost(post._id)">delete</button>
+            </td>
           </tr>
         </table>
       </section>
@@ -28,7 +32,7 @@
       <section class="col-12 panel panel-danger" v-if="!posts.length">
         <p>Тут пока что нет постов, добавить?</p>
         <div>
-          <router-link :to="{name: 'newPost'}">Добавить новый пост</router-link>
+          <router-link :to="{name: 'NewPost'}">Добавить новый пост</router-link>
         </div>
       </section>
 
@@ -52,6 +56,10 @@
         const response = await PostsService.fetchPosts();
         this.posts = response.data.posts;
         posts = this.posts;
+      },
+      async removePost (value) {
+        await PostsService.deletePost(value);
+        this.getPosts();
       }
     },
     mounted() {

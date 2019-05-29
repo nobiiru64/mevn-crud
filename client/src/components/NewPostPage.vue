@@ -54,7 +54,7 @@
           await PostsService.addNewPost({
             title: this.post.title,
             description: this.post.description
-          })
+          });
           this.$router.push({name: 'Posts'})
         } else {
           alert('Пустые поля!')
